@@ -1,7 +1,9 @@
 import { z } from "zod";
 import { formatNumberWithDecimal } from "./utils";
 
-const currency = z.number().refine((val) => /^\d+(\.\d{2})?$/.test(formatNumberWithDecimal(+val)), 'Invalid price format')
+const currency = z
+  .number()
+  .refine((val) => /^\d+(\.\d{2})?$/.test(val), "Invalid price format");
 
 // Schema for inserting products
 export const insertProductSchema = z.object({
@@ -15,5 +17,5 @@ export const insertProductSchema = z.object({
   rating: z.number().positive().int(),
   isFeatured: z.boolean(),
   banner: z.string().nullable(),
-    price: currency,
+  price: currency,
 });

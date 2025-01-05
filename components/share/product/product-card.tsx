@@ -19,7 +19,9 @@ export default function ProductCard({ product }: { product: Product }) {
         </Link>
       </CardHeader>
       <CardContent className="gap-4 grid p-4">
-        <div className="text-xs">Brand: {product.brand}</div>
+        <div className="md:block lg:block hidden text-xs">
+          Brand: {product.brand}
+        </div>
         <Link href={`/product/${product.slug}`}>
           <h2 className="font-medium">{product.name}</h2>
         </Link>
