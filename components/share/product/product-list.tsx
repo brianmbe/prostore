@@ -1,3 +1,4 @@
+import { Product } from "@/types";
 import ProductCard from "./product-card";
 
 export default function ProductList({
@@ -5,7 +6,7 @@ export default function ProductList({
   title,
   limit,
 }: {
-  data: any;
+  data: Product[];
   title?: string;
   limit?: number;
 }) {
@@ -17,7 +18,7 @@ export default function ProductList({
 
       {data.length > 0 ? (
         <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {limitedData.map((product: any) => (
+          {limitedData.map((product: Product) => (
             <ProductCard key={product.name} product={product} />
           ))}
         </div>
