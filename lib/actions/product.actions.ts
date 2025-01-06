@@ -13,3 +13,12 @@ export async function getLatestProducts() {
 
   return convertPrismaObjToObj(data);
 }
+
+// Get product by slug
+export async function getProductBySlug(slug: string) {
+  const productData = await prisma.product.findUnique({
+    where: { slug: slug },
+  });
+
+  return convertPrismaObjToObj(productData);
+}

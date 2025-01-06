@@ -4,7 +4,7 @@ import { formatNumberWithDecimal } from "./utils";
 const currency = z
   .string()
   .refine(
-    (val) => /^\d+(\.\d{2})?$/.test(formatNumberWithDecimal(val)),
+    (val) => /^\d+(\.\d{2})?$/.test(formatNumberWithDecimal(+val)),
     "Invalid price format"
   );
 

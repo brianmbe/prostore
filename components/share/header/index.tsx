@@ -16,7 +16,7 @@ export default function Header() {
               height={48}
               priority={true}
             />
-            <span className="lg:block hidden ml-3 font-bold text-2xl">
+            <span className="lg:block hidden ml-3 pl-3 border-l-2 font-bold text-2xl uppercase">
               {APP_NAME}
             </span>
           </Link>

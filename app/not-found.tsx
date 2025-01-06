@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { APP_NAME } from "@/lib/constants";
+import PreviousPage from "@/components/share/previouspage/previous-page";
 
 export default function NotFound() {
   return (
@@ -17,13 +18,7 @@ export default function NotFound() {
       <div className="shadow-md p-6 rounded-lg w-1/3 text-center"></div>
       <h1 className="mt-4 mb-4 font-bold text-3xl">Page Not Found</h1>
       <p className="text-destructive">Could not find the requested page</p>
-      <Button
-        variant={"outline"}
-        className="mt-4 ml-2"
-        onClick={() => window.history.back()}
-      >
-        &larr; Back
-      </Button>
+      <PreviousPage />
     </div>
   );
 }
