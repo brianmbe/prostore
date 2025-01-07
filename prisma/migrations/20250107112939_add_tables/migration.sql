@@ -1,4 +1,26 @@
 -- CreateTable
+CREATE TABLE "Product" (
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "name" TEXT NOT NULL,
+    "slug" TEXT NOT NULL,
+    "category" TEXT NOT NULL,
+    "sub_category_1" TEXT NOT NULL,
+    "sub_category_2" TEXT NOT NULL,
+    "images" TEXT[],
+    "brand" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "stock" INTEGER NOT NULL,
+    "price" DECIMAL(10,2) NOT NULL,
+    "rating" DECIMAL(3,2) NOT NULL,
+    "numReviews" INTEGER NOT NULL DEFAULT 0,
+    "isFeatured" BOOLEAN NOT NULL DEFAULT false,
+    "banner" TEXT,
+    "createdAt" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "User" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "name" TEXT NOT NULL DEFAULT 'NO_NAME',
@@ -53,6 +75,9 @@ CREATE TABLE "VerificationToken" (
 
     CONSTRAINT "VerificationToken_pkey" PRIMARY KEY ("identifier","token")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "product_slug_index" ON "Product"("slug");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "user_email_index" ON "User"("email");
