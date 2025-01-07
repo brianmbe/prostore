@@ -17,7 +17,7 @@ const sampleData = {
   ],
   products: [
     {
-      name: "Polo Sporting Stretch Shirt",
+      name: "Sporting Stretch Shirt",
       slug: "polo-sporting-stretch-shirt",
       category: "Men's Dress Shirts",
       description: "Classic Polo style with modern comfort",
@@ -34,7 +34,7 @@ const sampleData = {
       banner: "banner-1.jpg",
     },
     {
-      name: "Brooks Brothers Long Sleeved Shirt",
+      name: "Long Sleeved Shirt",
       slug: "brooks-brothers-long-sleeved-shirt",
       category: "Men's Dress Shirts",
       description: "Timeless style and premium comfort",
@@ -51,7 +51,7 @@ const sampleData = {
       banner: "banner-2.jpg",
     },
     {
-      name: "Tommy Hilfiger Classic Fit Dress Shirt",
+      name: "Classic Fit Dress Shirt",
       slug: "tommy-hilfiger-classic-fit-dress-shirt",
       category: "Men's Dress Shirts",
       description: "A perfect blend of sophistication and comfort",
@@ -68,7 +68,7 @@ const sampleData = {
       banner: null,
     },
     {
-      name: "Calvin Klein Slim Fit Stretch Shirt",
+      name: "Slim Fit Stretch Shirt",
       slug: "calvin-klein-slim-fit-stretch-shirt",
       category: "Men's Dress Shirts",
       description: "Streamlined design with flexible stretch fabric",
@@ -85,7 +85,7 @@ const sampleData = {
       banner: null,
     },
     {
-      name: "Polo Ralph Lauren Oxford Shirt",
+      name: "Ralph Lauren Oxford Shirt",
       slug: "polo-ralph-lauren-oxford-shirt",
       category: "Men's Dress Shirts",
       description: "Iconic Polo design with refined oxford fabric",
@@ -102,7 +102,7 @@ const sampleData = {
       banner: null,
     },
     {
-      name: "Polo Classic Pink Hoodie",
+      name: "Classic Pink Hoodie",
       slug: "polo-classic-pink-hoodie",
       category: "Men's Sweatshirts",
       description: "Soft, stylish, and perfect for laid-back days",

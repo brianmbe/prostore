@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import sampleData from "./sample-data";
 
 // Seed the database with data added immediately after the database is created/updated
-// -- npx tsx ./db/seed.ts
+// -- npx tsx ./db/seed
 
 async function main() {
   const prisma = new PrismaClient();

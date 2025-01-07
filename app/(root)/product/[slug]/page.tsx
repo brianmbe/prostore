@@ -25,7 +25,10 @@ export default async function ProductDetailsPage(props: {
           <span>
             <Link href={"/"}>{product.category}</Link>
           </span>{" "}
-          &gt; <span className="text-gray-500 lowercase">{product.name}</span>
+          &gt;{" "}
+          <span className="text-gray-500 lowercase">
+            {product.brand} {product.name}
+          </span>
         </p>
       </div>
 
@@ -44,7 +47,9 @@ export default async function ProductDetailsPage(props: {
                 {product.isFeatured ? "Top Deal" : "Featured"}
               </Badge>
             </div>
-            <h1 className="h3-bold">{product.name}</h1>
+            <h1 className="h3-bold">
+              {product.brand} {product.name}
+            </h1>
             <p>{<Badge>Brand: {product.brand}</Badge>}</p>
             <p>
               {product.rating} of {product.numReviews} Revies
