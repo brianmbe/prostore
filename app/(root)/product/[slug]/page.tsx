@@ -51,11 +51,15 @@ export default async function ProductDetailsPage(props: {
               {product.rating} of {product.numReviews} Revies
             </p>
             <div className="flex sm:flex-row flex-col sm:items-center gap-3">
-              <ProductPrice
-                value={Number(product.price)}
-                className="bg-green-100 px-7 py-1 rounded-full w-24 text-green-700"
-              />
-              <p>{product.stock} in stock</p>
+              {product.stock > 0 && (
+                <>
+                  <ProductPrice
+                    value={Number(product.price)}
+                    className="bg-green-100 px-7 py-1 rounded-full w-24 text-green-700"
+                  />
+                  <p>{product.stock} in stock</p>
+                </>
+              )}
             </div>
           </div>
           <div className="mt-10">
