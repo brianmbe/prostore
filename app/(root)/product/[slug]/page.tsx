@@ -7,6 +7,7 @@ import ProductPrice from "@/components/share/product/product-price";
 import { Button } from "@/components/ui/button";
 import ProductImages from "@/components/share/product/product-images";
 import PreviousPage from "@/components/share/previouspage/previous-page";
+import Link from "next/link";
 
 export default async function ProductDetailsPage(props: {
   params: Promise<{ slug: string }>;
@@ -30,7 +31,11 @@ export default async function ProductDetailsPage(props: {
         <div className="col-span-2 p-5">
           <div className="flex flex-col gap-6">
             <p className="text-gray-500 text-sm">
-              Category: {product.category} &gt; {product.brand}
+              Category:{" "}
+              <span>
+                <Link href={"/"}>{product.category}</Link>
+              </span>{" "}
+              &gt; {product.brand}
             </p>
             <div className="flex gap-3">
               <Badge>{product.category}</Badge>
