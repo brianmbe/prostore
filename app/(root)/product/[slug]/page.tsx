@@ -1,13 +1,12 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 import { getProductBySlug } from "@/lib/actions/product.actions";
 import ProductPrice from "@/components/share/product/product-price";
-import { Button } from "@/components/ui/button";
 import ProductImages from "@/components/share/product/product-images";
-import PreviousPage from "@/components/share/previouspage/previous-page";
-import Link from "next/link";
 
 export default async function ProductDetailsPage(props: {
   params: Promise<{ slug: string }>;
@@ -19,8 +18,15 @@ export default async function ProductDetailsPage(props: {
 
   return (
     <section>
-      <div className="mb-2">
-        <PreviousPage />
+      <div className="flex items-center gap-2 mb-3">
+        {/* <PreviousPage /> */}
+        <p className="text-gray-300 text-sm">
+          Category:{" "}
+          <span>
+            <Link href={"/"}>{product.category}</Link>
+          </span>{" "}
+          &gt; <span className="text-gray-500 lowercase">{product.name}</span>
+        </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-5">
@@ -30,13 +36,6 @@ export default async function ProductDetailsPage(props: {
         {/* Details column */}
         <div className="col-span-2 p-5">
           <div className="flex flex-col gap-6">
-            <p className="text-gray-500 text-sm">
-              Category:{" "}
-              <span>
-                <Link href={"/"}>{product.category}</Link>
-              </span>{" "}
-              &gt; {product.brand}
-            </p>
             <div className="flex gap-3">
               <Badge>{product.category}</Badge>
               <Badge
