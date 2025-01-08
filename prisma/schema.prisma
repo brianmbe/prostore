@@ -1,6 +1,9 @@
 // running Prisma after modifying the schema
 // - Generate client after editing schema(schema.prisma) = npx prisma generate // or npx prisma generate --schema=./prisma/schema.prisma
-// - Migration = npx prisma migrate dev --name add_user_based_tables 
+// - Migration = npx prisma migrate dev --name add_user_based_tables
+// - Run migration = npx prisma migrate dev 
+// - Reset database = npx prisma migrate reset
+// - Seed database = npx tsx .db/seed
 // - Prisma studio = npx prisma studio
 
 generator client {
