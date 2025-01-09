@@ -1,7 +1,7 @@
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import {
   Card,
   CardContent,
@@ -11,40 +11,47 @@ import {
 } from "@/components/ui/card";
 
 import { APP_NAME } from "@/lib/constants";
-import CredentialsSignInForm from "./credentials-signin-form";
 import { auth } from "@/auth/auth";
+import SignUpForm from "./sign-up-form";
 
 export const metadata: Metadata = {
-  title: "Sign-In",
+  title: "Sign-Up",
 };
 
-export default async function SignIn() {
+export default async function SignUn(props: {
+  searchParams: Promise<{
+    callbackUrl: string;
+  }>;
+}) {
+  const { callbackUrl } = await props.searchParams;
+
   const session = await auth();
+  console.log("Session:", session);
 
   if (session) {
-    return redirect("/");
+    return redirect(callbackUrl || "/");
   }
 
   return (
-    <div className="mx-auto w-full max-w-md">
-      <Card>
+    <div className="flex justify-center items-center min-h-screen">
+      <Card className="w-full max-w-md">
         <CardHeader className="space-y-4">
           <Link href="/" className="flex justify-center">
             <Image
               src={"images/logo.svg"}
-              height={100}
-              width={100}
+              height={70}
+              width={70}
               alt={`${APP_NAME} logo`}
               priority={true}
             />
           </Link>
-          <CardTitle className="text-center">Sign In</CardTitle>
+          <CardTitle className="text-center">Sign Up</CardTitle>
           <CardDescription className="text-center">
-            Sign in to your account to continue
+            Enter your information below to Sign up for an account
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <CredentialsSignInForm />
+          <SignUpForm />
         </CardContent>
       </Card>
     </div>
