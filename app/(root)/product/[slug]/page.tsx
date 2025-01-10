@@ -67,7 +67,11 @@ export default async function ProductDetailsPage(props: {
                 </>
               )}
             </div>
+            {product.stock > 0 && (
+              <Button className="w-full btn-primary">Add to cart</Button>
+            )}
           </div>
+
           <div className="mt-10">
             <p className="font-semibold">Description:</p>
             <p>{product.description}</p>
