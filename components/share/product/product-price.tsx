@@ -13,7 +13,7 @@ export default function ProductPrice({
   // Add commas for thousands
   const priceWithCommas = formattedPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   // get the int/float
-  const [intValue, floatValue] = priceWithCommas.split(".");
+  const [intValue] = priceWithCommas.split(".");
 
   return (
     <p className={cn("text-2xl", className)}>
