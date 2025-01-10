@@ -21,7 +21,7 @@ export default function ProductImages({ images }: { images: string[] }) {
             key={index}
             className={cn(
               "cursor-pointer",
-              current === index && "border-2 border-green-500 gap-2"
+              current === index && "border-2 border-gray-500 gap-2"
             )}
           >
             <Image

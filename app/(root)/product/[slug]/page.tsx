@@ -47,10 +47,12 @@ export default async function ProductDetailsPage(props: {
                 {product.isFeatured ? "Top Deal" : "Featured"}
               </Badge>
             </div>
-            <h1 className="h3-bold">
-              {product.brand} {product.name}
-            </h1>
-            <p>{<Badge>Brand: {product.brand}</Badge>}</p>
+            <div className="border-gray-300 m-3 p-3 border rounded-md">
+              <h1 className="h3-bold">
+                {product.brand} {product.name}
+              </h1>
+              <p>{<Badge>Brand: {product.brand}</Badge>}</p>
+            </div>
             <p>
               {product.rating} of {product.numReviews} Revies
             </p>
@@ -59,7 +61,7 @@ export default async function ProductDetailsPage(props: {
                 <>
                   <ProductPrice
                     value={Number(product.price)}
-                    className="bg-green-100 px-7 py-1 rounded-full w-24 text-green-700"
+                    className="border-gray-700 px-7 py-1 border rounded-full w-fit"
                   />
                   <p>{product.stock} in stock</p>
                 </>

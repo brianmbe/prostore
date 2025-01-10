@@ -1,3 +1,4 @@
+import { dollarRate } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 export default function ProductPrice({
@@ -16,8 +17,8 @@ export default function ProductPrice({
 
   return (
     <p className={cn("text-2xl", className)}>
-      <span className="font-bold text-lg">${intValue}</span>
-      <span className="text-xs align-super">.{floatValue}</span>
+      <span className="font-bold text-lg">UGX {+intValue * dollarRate}</span>
+      {/* <span className="text-xs align-super">.{floatValue}</span> */}
     </p>
   );
 }

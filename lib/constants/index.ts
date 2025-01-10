@@ -16,3 +16,4 @@ export const signUpDefaultValues = {
   password: "",
   confirmPassword: "",
 };
+export const dollarRate = 3697.79;
