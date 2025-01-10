@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">**Prostore UG**</div>
 
-## Getting Started
+![Prostore UG](image.png) ![Prostore Ug](image-1.png)
+![Small screen](image-2.png)
 
-First, run the development server:
+**Prostore UG** is a comprehensive e-commerce platform developed using Next.js, TypeScript, PostgreSQL, and Prisma. It offers a wide range of features designed to provide a seamless shopping experience for users and robust management tools for administrators.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Key Features:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Authentication: Utilizes NextAuth for secure user authentication.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Admin Dashboard: Includes an admin area equipped with statistics and charts powered by Recharts, facilitating effective management of orders, products, and users.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+User Profile: Provides a user area where customers can manage their profiles and view their orders.
 
-## Learn More
+Payment Integration: Supports multiple payment options, including Stripe API integration, PayPal integration, and a cash-on-delivery option.
 
-To learn more about Next.js, take a look at the following resources:
+Checkout Process: Features an interactive checkout process to enhance user experience.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Product Display: Showcases featured products with banners and supports multiple images using Uploadthing.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Reviews and Ratings: Incorporates a ratings and reviews system to facilitate customer feedback.
 
-## Deploy on Vercel
+Search and Filtering: Equipped with search functionality for both customers and admins, along with sorting, filtering, and pagination capabilities.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Theme Options: Offers system (automatic), dark and light mode themes to suit user preferences.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Please visit here to try it out: https://prostore-orpin.vercel.app/
