@@ -4,8 +4,6 @@ CREATE TABLE "Product" (
     "name" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
     "category" TEXT NOT NULL,
-    "sub_category_1" TEXT NOT NULL,
-    "sub_category_2" TEXT NOT NULL,
     "images" TEXT[],
     "brand" TEXT NOT NULL,
     "description" TEXT NOT NULL,
@@ -58,13 +56,13 @@ CREATE TABLE "Account" (
 
 -- CreateTable
 CREATE TABLE "Session" (
-    "sessionToken" TEXT NOT NULL,
+    "token" TEXT NOT NULL,
     "userId" UUID NOT NULL,
     "expires" TIMESTAMP(6) NOT NULL,
     "createdAt" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "Session_pkey" PRIMARY KEY ("sessionToken")
+    CONSTRAINT "Session_pkey" PRIMARY KEY ("token")
 );
 
 -- CreateTable

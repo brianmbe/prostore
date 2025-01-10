@@ -31,8 +31,8 @@ export default async function UserButton() {
         <DropdownMenuTrigger asChild>
           <div className="flex items-center">
             <Button
-              variant={"ghost"}
-              className="relative flex justify-center items-center bg-gray-200 ml-2 rounded-full w-8 h-8"
+              variant={"default"}
+              className="relative flex justify-center items-center ml-2 rounded-full w-8 h-8"
             >
               {firstInitial}
             </Button>
@@ -52,9 +52,11 @@ export default async function UserButton() {
           <DropdownMenuItem className="mb-1 p-0">
             <form action={signOutUser} className="w-full">
               <Button
-                className="justify-start px-2 py-4 w-full h-4"
-                variant={"ghost"}
-              ></Button>
+                className="justify-center mt-3 px-2 py-4 w-full h-4"
+                variant={"default"}
+              >
+                Sign Out
+              </Button>
             </form>
           </DropdownMenuItem>
         </DropdownMenuContent>
