@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { getProductBySlug } from "@/lib/actions/product.actions";
 import ProductPrice from "@/components/share/product/product-price";
 import ProductImages from "@/components/share/product/product-images";
+import AddToCart from "@/components/share/product/add-to-cart";
 
 export default async function ProductDetailsPage(props: {
   params: Promise<{ slug: string }>;
@@ -69,7 +70,16 @@ export default async function ProductDetailsPage(props: {
               {product.rating} of {product.numReviews} Reviews
             </p>
             {product.stock > 0 && (
-              <Button className="w-full btn-primary">Add to cart</Button>
+              <AddToCart
+                item={{
+                  product_id: product.id,
+                  name: product.name,
+                  slug: product.slug,
+                  qty: 1,
+                  image: product.images![0],
+                  price: product.price,
+                }}
+              />
             )}
           </div>
 
@@ -83,13 +93,13 @@ export default async function ProductDetailsPage(props: {
         <div className="col-span-1">
           <Card>
             <CardContent className="p-5">
-              <div className="flex justify-between mb-2">
+              {/* <div className="flex justify-between mb-2">
                 <ProductPrice
                   value={Number(product.price)}
                   className="text-xl"
                   product={product}
                 />
-              </div>
+              </div> */}
               <div className="flex justify-between mb-2">
                 <p className="text-gray-500">Status:</p>
                 <p>
@@ -101,7 +111,16 @@ export default async function ProductDetailsPage(props: {
                 </p>
               </div>
               {product.stock > 0 && (
-                <Button className="w-full btn-primary">Add to cart</Button>
+                <AddToCart
+                  item={{
+                    product_id: product.id,
+                    name: product.name,
+                    slug: product.slug,
+                    qty: 1,
+                    image: product.images![0],
+                    price: product.price,
+                  }}
+                />
               )}
             </CardContent>
           </Card>
