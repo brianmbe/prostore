@@ -89,7 +89,7 @@ export default async function ProductDetailsPage(props: {
         </div>
 
         {/* Action column */}
-        <div className="col-span-1">
+        <div className="md:block lg:block hidden col-span-1">
           <Card>
             <CardContent className="p-5">
               {/* <div className="flex justify-between mb-2">
