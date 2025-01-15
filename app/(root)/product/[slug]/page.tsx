@@ -47,26 +47,27 @@ export default async function ProductDetailsPage(props: {
                 {product.isFeatured ? "Top Deal" : "Featured"}
               </Badge>
             </div>
+            <h1 className="h3-bold">
+              {product.brand} {product.name}
+            </h1>
+            <span>Brand: {product.brand}</span>
             <div className="border-gray-300 m-3 p-3 border rounded-md">
-              <h1 className="h3-bold">
-                {product.brand} {product.name}
-              </h1>
-              <p>{<Badge>Brand: {product.brand}</Badge>}</p>
+              <div className="">
+                <div className="flex sm:flex-row flex-col sm:items-center gap-3">
+                  {product.stock > 0 && (
+                    <>
+                      <ProductPrice
+                        value={Number(product.price)}
+                        product={product}
+                      />
+                    </>
+                  )}
+                </div>
+              </div>
             </div>
             <p>
-              {product.rating} of {product.numReviews} Revies
+              {product.rating} of {product.numReviews} Reviews
             </p>
-            <div className="flex sm:flex-row flex-col sm:items-center gap-3">
-              {product.stock > 0 && (
-                <>
-                  <ProductPrice
-                    value={Number(product.price)}
-                    className="border-gray-700 px-7 py-1 border rounded-full w-fit"
-                  />
-                  <p>{product.stock} in stock</p>
-                </>
-              )}
-            </div>
             {product.stock > 0 && (
               <Button className="w-full btn-primary">Add to cart</Button>
             )}
@@ -83,10 +84,10 @@ export default async function ProductDetailsPage(props: {
           <Card>
             <CardContent className="p-5">
               <div className="flex justify-between mb-2">
-                <p className="text-gray-500">Price:</p>
                 <ProductPrice
                   value={Number(product.price)}
                   className="text-xl"
+                  product={product}
                 />
               </div>
               <div className="flex justify-between mb-2">

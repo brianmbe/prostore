@@ -3,7 +3,7 @@
 // - Migration = npx prisma migrate dev --name add_user_based_tables
 // - Run migration = npx prisma migrate dev 
 // - Reset database = npx prisma migrate reset
-// - Seed database = npx tsx .db/seed
+// - Seed database = npx tsx ./db/seed
 // - Prisma studio = npx prisma studio
 
 generator client {
@@ -24,6 +24,7 @@ model Product {
   images      String[]
   brand       String
   description String
+  purchased   Int
   stock       Int
   price       Decimal  @db.Decimal(10, 2)
   rating      Decimal  @db.Decimal(3, 2)

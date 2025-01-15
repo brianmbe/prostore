@@ -19,16 +19,15 @@ export default function ProductCard({ product }: { product: Product }) {
         </Link>
       </CardHeader>
       <CardContent className="gap-4 grid p-4">
-        <div className="md:block lg:block hidden text-xs">
-          Brand: {product.brand}
-        </div>
         <Link href={`/product/${product.slug}`}>
-          <h2 className="font-medium">{product.name}</h2>
+          <h2 className="font-bold">
+            {product.brand} {product.name}
+          </h2>
         </Link>
         <div className="flex-between gap-4">
-          <p>{product.rating} Stars</p>
+          {/* <p>{product.rating} Stars</p> */}
           {product.stock > 0 ? (
-            <ProductPrice value={+product.price} />
+            <ProductPrice value={+product.price} product={product} />
           ) : (
             <p className="text-destructive">Out of Stock</p>
           )}

@@ -17,3 +17,5 @@ export const signUpDefaultValues = {
   confirmPassword: "",
 };
 export const dollarRate = 3697.79;
+export const product_currency = "UGX";
+export const product_price_discount = 2.2;

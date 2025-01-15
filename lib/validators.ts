@@ -15,6 +15,7 @@ export const insertProductSchema = z.object({
   category: z.string().min(3, "Category must be atleast 3 characters"),
   brand: z.string().min(3, "Brand must be atleast 3 characters"),
   description: z.string().min(3, "Category must be atleast 3 characters"),
+  purchased: z.coerce.number(), // comes as string from form and changes to number
   stock: z.coerce.number(), // comes as string from form and changes to number
   images: z.array(z.string()).min(1, "Atleast one image is required"),
   rating: z.number().positive().int(),
@@ -43,4 +44,3 @@ export const signInUpFormSchema = z
     message: "Password does not match",
     path: ["confirmPassword"], // Where the actin has to happen
   });
-
