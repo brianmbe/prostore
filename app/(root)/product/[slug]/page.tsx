@@ -2,7 +2,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 
 import { getProductBySlug } from "@/lib/actions/product.actions";
 import ProductPrice from "@/components/share/product/product-price";
