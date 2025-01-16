@@ -15,7 +15,7 @@ export default function ProductPrice({
   const fixedPrice = Math.round(value);
 
   return (
-    <div className="flex flex-col items-start space-y-2">
+    <div className="group: flex flex-col items-start space-y-2">
       <div className="flex flex-row flex-between gap-1">
         {/* Discounted Price */}
         <span className={cn("text-2xl", className)}>
@@ -32,7 +32,7 @@ export default function ProductPrice({
       <span className="text-gray-700 text-sm">{product?.stock} items left</span>
 
       {/* Progress Bar */}
-      <div className="bg-gray-300 rounded-full w-full h-2">
+      <div className="group-hover:hidden bg-gray-300 rounded-full w-full h-2">
         <div
           // className={`${product?.stock > 0 ? "bg-orange-600" : "bg-orange-600"}`}
           className={`${product.stock > 0 ? `${product.stock < 10 ? "bg-red-600" : "bg-orange-500"}` : ""} rounded-full h-2`}

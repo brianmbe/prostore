@@ -92,13 +92,6 @@ export default async function ProductDetailsPage(props: {
         <div className="md:block lg:block hidden col-span-1">
           <Card>
             <CardContent className="p-5">
-              {/* <div className="flex justify-between mb-2">
-                <ProductPrice
-                  value={Number(product.price)}
-                  className="text-xl"
-                  product={product}
-                />
-              </div> */}
               <div className="flex justify-between mb-2">
                 <p className="text-gray-500">Status:</p>
                 <p>
