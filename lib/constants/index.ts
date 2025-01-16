@@ -19,3 +19,5 @@ export const signUpDefaultValues = {
 export const dollarRate = 3697.79;
 export const product_currency = "UGX";
 export const product_price_discount = 2.2;
+export const vatFee = 18 / 100;
+export const shippingFee = 14 / 100;

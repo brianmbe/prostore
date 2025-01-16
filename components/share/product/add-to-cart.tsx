@@ -3,7 +3,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { Plus } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import { CartItem } from "@/types";
@@ -16,10 +16,10 @@ export default function AddToCart({ item }: { item: CartItem }) {
   async function HandleAddToCart() {
     const response = await addItemToCart(item);
 
-    if (!response.success) {
+    if (!response || !response.success) {
       toast({
         variant: "destructive",
-        description: response.message,
+        description: response ? response.message : "An error occurred",
       });
       return;
     }
@@ -41,7 +41,7 @@ export default function AddToCart({ item }: { item: CartItem }) {
       type="button"
       onClick={HandleAddToCart}
     >
-      <Plus /> Add to cart
+      <ShoppingCart /> Add to cart
     </Button>
   );
 }
