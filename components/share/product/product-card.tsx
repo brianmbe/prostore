@@ -4,8 +4,11 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import ProductPrice from "./product-price";
 import { Product } from "@/types";
 import AddToCart from "./add-to-cart";
+import { getMyCart } from "@/lib/actions/cart.actions";
 
-export default function ProductCard({ product }: { product: Product }) {
+export default async function ProductCard({ product }: { product: Product }) {
+  const cart = await getMyCart();
+
   return (
     <Card className="w-full max-w-sm group">
       <CardHeader className="items-center p-0">
@@ -38,6 +41,7 @@ export default function ProductCard({ product }: { product: Product }) {
         {product.stock > 0 && (
           <div className="group-hover:block hidden">
             <AddToCart
+              cart={cart}
               item={{
                 product_id: product.id,
                 name: product.name,

@@ -90,7 +90,7 @@ export const config = {
 
       return token;
     },
-    //cartsession
+    //cartsession to handle middleware
     authorized({ request, auth }: any) {
       // check for session cart cookie
       if (!request.cookies.get("sessionCartId")) {
@@ -109,6 +109,7 @@ export const config = {
 
         // set newly generated sessionCartId in the response cookies
         response.cookies.set("sessionCartId", sessionCartId);
+
         return response;
       } else {
         return true;

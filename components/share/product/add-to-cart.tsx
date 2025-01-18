@@ -1,47 +1,100 @@
 "use client";
 
-import React from "react";
+import { useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Minus, Plus, Loader } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
-import { CartItem } from "@/types";
-import { addItemToCart } from "@/lib/actions/cart.actions";
+import { Cart, CartItem } from "@/types";
+import { addItemToCart, removeItemFromCart } from "@/lib/actions/cart.actions";
 
-export default function AddToCart({ item }: { item: CartItem }) {
+export default function AddToCart({
+  item,
+  cart,
+}: {
+  item: CartItem;
+  cart?: Cart;
+}) {
   const router = useRouter();
   const { toast } = useToast();
+  const [isPending, startTransition] = useTransition();
 
   async function HandleAddToCart() {
-    const response = await addItemToCart(item);
+    startTransition(async () => {
+      const response = await addItemToCart(item);
 
-    if (!response || !response.success) {
+      if (!response.success) {
+        toast({
+          variant: "destructive",
+          description: response.message,
+        });
+        return;
+      }
+
+      // handle success add to cart
       toast({
-        variant: "destructive",
-        description: response ? response.message : "An error occurred",
+        description: response.message,
+        action: (
+          <ToastAction
+            altText="Go to cart"
+            onClick={() => router.push("/cart")}
+          >
+            Go To Cart
+          </ToastAction>
+        ),
       });
-      return;
-    }
-
-    // handle success add to cart
-    toast({
-      description: `${item.name} successfully added to cart`,
-      action: (
-        <ToastAction altText="Go to cart" onClick={() => router.push("/cart")}>
-          Go To Cart
-        </ToastAction>
-      ),
     });
   }
 
-  return (
+  // handle remove from cart
+  async function handleRemoveFromCart() {
+    startTransition(async () => {
+      const response = await removeItemFromCart(item.product_id);
+
+      toast({
+        variant: response.success ? "default" : "destructive",
+        description: response.message,
+      });
+
+      return;
+    });
+  }
+
+  //  check if in cart
+  const itemExist =
+    cart && cart.items.find((x) => x.product_id === item.product_id);
+
+  return itemExist ? (
+    <div className="items-center">
+      <Button type="button" variant={"outline"} onClick={handleRemoveFromCart}>
+        {isPending ? (
+          <Loader className="w-4 h-4 animate-spin" />
+        ) : (
+          <Minus className="w-4 h-4" />
+        )}
+      </Button>
+      <span className="px-2">{itemExist.qty}</span>
+      <Button type="button" variant={"outline"} onClick={HandleAddToCart}>
+        {isPending ? (
+          <Loader className="w-4 h-4 animate-spin" />
+        ) : (
+          <Plus className="w-4 h-4" />
+        )}
+      </Button>
+    </div>
+  ) : (
     <Button
       className="w-full btn-primary"
       type="button"
       onClick={HandleAddToCart}
     >
-      <ShoppingCart /> Add to cart
+      {isPending ? (
+        <Loader className="w-4 h-4 animate-spin" />
+      ) : (
+        <ShoppingCart />
+      )}{" "}
+      Add to cart
     </Button>
   );
 }

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { EllipsisVertical, ShoppingCart } from "lucide-react";
+import { EllipsisVertical, ShoppingBasket } from "lucide-react";
 
 import ModeToggle from "./Mode-toggle";
 import {
@@ -19,7 +19,7 @@ export default function Menu() {
         <ModeToggle />
         <Button asChild variant={"ghost"}>
           <Link href="/cart">
-            <ShoppingCart /> Cart
+            <ShoppingBasket /> Cart
           </Link>
         </Button>
         <UserButton />
@@ -34,7 +34,7 @@ export default function Menu() {
             <ModeToggle />
             <Button asChild variant={"ghost"}>
               <Link href="/cart">
-                <ShoppingCart /> Cart
+                <ShoppingBasket /> Cart
               </Link>
             </Button>
             <UserButton />

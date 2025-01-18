@@ -7,6 +7,7 @@ import { getProductBySlug } from "@/lib/actions/product.actions";
 import ProductPrice from "@/components/share/product/product-price";
 import ProductImages from "@/components/share/product/product-images";
 import AddToCart from "@/components/share/product/add-to-cart";
+import { getMyCart } from "@/lib/actions/cart.actions";
 
 export default async function ProductDetailsPage(props: {
   params: Promise<{ slug: string }>;
@@ -15,6 +16,8 @@ export default async function ProductDetailsPage(props: {
 
   const product = await getProductBySlug(slug);
   if (!product) notFound();
+
+  const cart = await getMyCart();
 
   return (
     <section>
@@ -65,20 +68,25 @@ export default async function ProductDetailsPage(props: {
                 </div>
               </div>
             </div>
-            <p>
-              {product.rating} of {product.numReviews} Reviews
-            </p>
+            <p>{product.rating}⭐⭐⭐⭐</p>
+
             {product.stock > 0 && (
-              <AddToCart
-                item={{
-                  product_id: product.id,
-                  name: product.name,
-                  slug: product.slug,
-                  qty: 1,
-                  image: product.images![0],
-                  price: product.price,
-                }}
-              />
+              <>
+                {cart > 0 && (
+                  <p className="font-bold text-2xl">Complete Your Cart</p>
+                )}
+                <AddToCart
+                  cart={cart}
+                  item={{
+                    product_id: product.id,
+                    name: product.name,
+                    slug: product.slug,
+                    qty: 1,
+                    image: product.images![0],
+                    price: product.price,
+                  }}
+                />
+              </>
             )}
           </div>
 
@@ -96,7 +104,11 @@ export default async function ProductDetailsPage(props: {
                 <p className="text-gray-500">Status:</p>
                 <p>
                   {product.stock > 0 ? (
-                    <Badge variant={"outline"}>In stock</Badge>
+                    <Badge variant={"outline"}>
+                      {product.stock > 10
+                        ? "In stock"
+                        : `${product.stock} left in stock`}
+                    </Badge>
                   ) : (
                     <Badge variant={"destructive"}>Out stock</Badge>
                   )}
@@ -104,6 +116,7 @@ export default async function ProductDetailsPage(props: {
               </div>
               {product.stock > 0 && (
                 <AddToCart
+                  cart={cart}
                   item={{
                     product_id: product.id,
                     name: product.name,
