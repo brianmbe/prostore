@@ -16,8 +16,17 @@ export const signUpDefaultValues = {
   password: "",
   confirmPassword: "",
 };
+
+export const shippingAddressDefaultValues = {
+  fullName: "Nyingambe Brian",
+  streetAddress: "Kla-Ebbz Express",
+  city: "Kampala",
+  postalCode: "256",
+  country: "Uganda",
+};
+
 export const dollarRate = 3697.79;
 export const product_currency = "UGX";
 export const product_price_discount = 2.2;
 export const vatFee = 18 / 100;
-export const shippingFee = 14 / 100;
+export const shippingFee = 3 / 100;

@@ -86,7 +86,7 @@ export async function addItemToCart(data: CartItem) {
       if (itemAleadyExist) {
         // check stock
         if (product.stock < itemAleadyExist.qty + 1) {
-          throw new Error("Not enough stock");
+          throw new Error(`Only ${product.stock} left in stock`);
         }
 
         // Enough qnty then add stock
@@ -95,7 +95,8 @@ export async function addItemToCart(data: CartItem) {
         )!.qty = itemAleadyExist.qty + 1;
       } else {
         // check stock
-        if (product.stock < 1) throw new Error("Not enough stock");
+        if (product.stock < 1)
+          throw new Error(`Not enough stock, ${product.stock} left`);
 
         // add item to cart.items
         cart.items.push(item);
@@ -116,7 +117,7 @@ export async function addItemToCart(data: CartItem) {
 
       return {
         success: true,
-        message: `${product.name} ${itemAleadyExist ? "Updated in" : "added to"} cart`,
+        message: `${product.brand} ${product.name} ${itemAleadyExist ? "Updated in" : "added to"} cart`,
       };
     }
   } catch (error) {
@@ -207,7 +208,7 @@ export async function removeItemFromCart(productId: string) {
 
     return {
       success: true,
-      message: `${product.name} was removed from cart`,
+      message: `${product.brand} ${product.name} was removed from cart`,
     };
   } catch (error) {
     return {
