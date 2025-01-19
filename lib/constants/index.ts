@@ -18,11 +18,11 @@ export const signUpDefaultValues = {
 };
 
 export const shippingAddressDefaultValues = {
-  fullName: "Nyingambe Brian",
-  streetAddress: "Kla-Ebbz Express",
-  city: "Kampala",
-  postalCode: "256",
-  country: "Uganda",
+  fullName: "",
+  streetAddress: "",
+  city: "",
+  postalCode: "",
+  country: "",
 };
 
 export const dollarRate = 3697.79;
