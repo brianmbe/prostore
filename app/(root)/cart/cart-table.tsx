@@ -19,7 +19,7 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import PreviousPage from "@/components/share/previouspage/previous-page";
-import { APP_NAME, product_currency } from "@/lib/constants";
+import { APP_NAME } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { addItemToCart, removeItemFromCart } from "@/lib/actions/cart.actions";
 import { formatCurrency } from "@/lib/utils";

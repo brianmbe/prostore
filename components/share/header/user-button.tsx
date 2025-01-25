@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { signOutUser } from "@/lib/actions/user.actions";
-import { auth } from "@/auth/auth";
+import { auth } from "@/auth";
 
 export default async function UserButton() {
   const session = await auth();

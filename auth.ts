@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import NextAuth from "next-auth";
 import CredentialProvider from "next-auth/providers/credentials";
 import { compareSync } from "bcrypt-ts-edge";
 import type { NextAuthConfig } from "next-auth";
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/db/prisma";
+import { cookies } from "next/headers";
 
 // configuring authentication with NextAuth and Prisma
 export const config = {
@@ -74,11 +76,12 @@ export const config = {
     async jwt({ token, user, trigger, session }: any) {
       // Assign user fields to the token
       if (user) {
+        token.id = user.id;
         token.role = user.role;
 
         // No name/ registration with a provider such as google,github
         if (user.name === "NO_NAME") {
-          token.name = user.email!.split("@"[0]);
+          token.name = user.email!.split("@")[0];
 
           // Update the DB to reflect the name
           await prisma.user.update({
@@ -86,12 +89,66 @@ export const config = {
             data: { name: token.name },
           });
         }
+
+        if (trigger === "signIn" || trigger === "signUp") {
+          const cookiesObject = await cookies();
+          const sessionCartId = cookiesObject.get("sessioncartId")?.value;
+
+          if (sessionCartId) {
+            const sessionCart = await prisma.cart.findFirst({
+              where: {
+                sessionCartId,
+              },
+            });
+
+            if (sessionCart) {
+              // delete current user cart
+              await prisma.cart.deleteMany({
+                where: {
+                  userId: user.id,
+                },
+              });
+
+              // Assign new cart
+              await prisma.cart.update({
+                where: {
+                  id: sessionCart.id,
+                },
+                data: {
+                  userId: user.id,
+                },
+              });
+            }
+          }
+        }
+      }
+
+      // Handle Session updates
+      if (session?.user.name && trigger === "update") {
+        token.name = session.user.name;
       }
 
       return token;
     },
     //cartsession to handle middleware
     authorized({ request, auth }: any) {
+      // Array or regex patterns of path I want to protect
+      const protectedPaths = [
+        /\/shipping-address/,
+        /\/payment-method/,
+        /\/place-order/,
+        /\/profile/,
+        /\/user\/(.*)/,
+        /\/order\/(.*)/,
+        /\/admin/,
+      ];
+
+      // Get pathame from the request object
+      const { pathname } = request.nextUrl;
+
+      // check if user is not authenticated
+      if (!auth && protectedPaths.some((p) => p.test(pathname))) return false;
+
       // check for session cart cookie
       if (!request.cookies.get("sessionCartId")) {
         // generate new session cart Id cookie

@@ -4,7 +4,7 @@ import { CartItem } from "@/types";
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/db/prisma";
-import { auth } from "@/auth/auth";
+import { auth } from "@/auth";
 import { convertPrismaObjToObj, formatError, round2 } from "../utils";
 import { cartItemSchema, insertCartSchema } from "../validators";
 import { shippingFee, vatFee } from "../constants";

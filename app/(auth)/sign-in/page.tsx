@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 
 import { APP_NAME } from "@/lib/constants";
-import { auth } from "@/auth/auth";
+import { auth } from "@/auth";
 import CredentialsSignInForm from "./credentials-signin-form";
 
 export const metadata: Metadata = {
@@ -39,8 +39,8 @@ export default async function SignIn(props: {
           <Link href="/" className="flex justify-center">
             <Image
               src={"images/logo.svg"}
-              height={100}
-              width={100}
+              height={60}
+              width={60}
               alt={`${APP_NAME} logo`}
               priority={true}
             />

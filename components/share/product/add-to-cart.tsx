@@ -66,7 +66,7 @@ export default function AddToCart({
     cart && cart.items.find((x) => x.product_id === item.product_id);
 
   return itemExist ? (
-    <div className="items-center">
+    <div className="flex-center items-center mt-3">
       <Button type="button" variant={"outline"} onClick={handleRemoveFromCart}>
         {isPending ? (
           <Loader className="w-4 h-4 animate-spin" />

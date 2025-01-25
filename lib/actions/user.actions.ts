@@ -5,7 +5,7 @@ import {
   signInFormSchema,
   signInUpFormSchema,
 } from "../validators";
-import { auth, signIn, signOut } from "@/auth/auth";
+import { auth, signIn, signOut } from "@/auth";
 import { prisma } from "@/db/prisma";
 import { hashSync } from "bcrypt-ts-edge";
 import { isRedirectError } from "next/dist/client/components/redirect-error";

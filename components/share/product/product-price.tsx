@@ -1,5 +1,5 @@
-import { product_currency, product_price_discount } from "@/lib/constants";
-import { cn } from "@/lib/utils";
+import { product_price_discount } from "@/lib/constants";
+import { cn, formatCurrency } from "@/lib/utils";
 import { Product } from "@/types";
 
 export default function ProductPrice({
@@ -19,12 +19,12 @@ export default function ProductPrice({
       <div className="flex flex-row flex-between gap-1">
         {/* Discounted Price */}
         <span className={cn("text-2xl", className)}>
-          {product_currency} {fixedPrice}
+          {formatCurrency(fixedPrice)}
         </span>
 
         {/* Original Price */}
         <span className="text-gray-500 line-through">
-          {product_currency} {fixedPrice * fixedDiscount}
+          {formatCurrency(fixedPrice * fixedDiscount)}
         </span>
       </div>
 
