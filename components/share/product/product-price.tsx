@@ -15,7 +15,7 @@ export default function ProductPrice({
   const fixedPrice = Math.round(value);
 
   return (
-    <div className="flex flex-col items-start space-y-2">
+    <div className="flex flex-col items-start space-y-2 overflow-hidden">
       <div className="flex flex-row flex-between gap-1">
         {/* Discounted Price */}
         <span className={cn("text-2xl", className)}>

@@ -28,16 +28,14 @@ export default async function ProductCard({ product }: { product: Product }) {
             {product.brand} {product.name}
           </h2>
         </Link>
-        <div className="flex-between gap-4">
-          {/* <p>{product.rating} Stars</p> */}
-          {product.stock > 0 ? (
-            <>
-              <ProductPrice value={+product.price} product={product} />
-            </>
-          ) : (
-            <p className="text-destructive">Out of Stock</p>
-          )}
-        </div>
+        {/* <p>{product.rating} Stars</p> */}
+        {product.stock > 0 ? (
+          <>
+            <ProductPrice value={+product.price} product={product} />
+          </>
+        ) : (
+          <p className="text-destructive">Out of Stock</p>
+        )}
         {product.stock > 0 && (
           <div className="group-hover:block hidden">
             <AddToCart

@@ -1,9 +1,11 @@
 "use server";
 
+import { z } from "zod";
 import {
   shippingAddressSchema,
   signInFormSchema,
   signInUpFormSchema,
+  paymentMethodSchema,
 } from "../validators";
 import { auth, signIn, signOut } from "@/auth";
 import { prisma } from "@/db/prisma";
@@ -130,6 +132,43 @@ export async function updateUserAddress(data: ShippingAddressType) {
     return {
       success: true,
       message: "User adress updated successfully",
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: formatError(error),
+    };
+  }
+}
+
+// Update users payments mtds
+export async function updateUserpaymentMethod(
+  data: z.infer<typeof paymentMethodSchema>
+) {
+  try {
+    const session = await auth();
+    const currentUser = await prisma.user.findFirst({
+      where: {
+        id: session?.user?.id,
+      },
+    });
+
+    if (!currentUser) throw new Error("User not found");
+
+    // if there is an authenticated user
+    const paymentMethod = paymentMethodSchema.parse(data);
+
+    // upadte database
+    await prisma.user.update({
+      where: {
+        id: currentUser.id,
+      },
+      data: { paymentMethod: paymentMethod.type },
+    });
+
+    return {
+      success: true,
+      message: "User updated successfully",
     };
   } catch (error) {
     return {
