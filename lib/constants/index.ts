@@ -30,3 +30,10 @@ export const product_currency = "UGX";
 export const product_price_discount = 2.2;
 export const vatFee = 18 / 100;
 export const shippingFee = 3 / 100;
+
+export const PAYMENT_METHODS = process.env.PAYMENT_METHODS
+  ? process.env.PAYMENT_METHODS.split(", ")
+  : ["Mobile Money", "Paypal", "Stripe", "Cash On Delivery"];
+
+export const DEFAULT_PAYMENT_METHOD =
+  process.env.DEFAULT_PAYMENT_METHOD || "Mobile Money";

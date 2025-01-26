@@ -4,6 +4,8 @@ import {
   insertCartSchema,
   cartItemSchema,
   shippingAddressSchema,
+  insertOrderSchema,
+  insertOrderItemSchema,
 } from "@/lib/validators";
 
 export type Product = z.infer<typeof insertProductSchema> & {
@@ -15,10 +17,18 @@ export type Product = z.infer<typeof insertProductSchema> & {
 export type Cart = z.infer<typeof insertCartSchema>;
 export type CartItem = z.infer<typeof cartItemSchema>;
 export type ShippingAddressType = z.infer<typeof shippingAddressSchema>;
-
-export const PAYMENT_METHODS = process.env.PAYMENT_METHODS
-  ? process.env.PAYMENT_METHODS.split(", ")
-  : ["Paypal, Stripe, CashOnDelivery"];
-
-export const DEFAULT_PAYMENT_METHOD =
-  process.env.DEFAULT_PAYMENT_METHOD || "Paypal";
+export type OrderItem = z.infer<typeof insertOrderItemSchema>;
+export type Order = z.infer<typeof insertOrderSchema> & {
+  id: string;
+  isPaid: boolean;
+  paidAt: Date | null;
+  isDelivered: boolean;
+  deliveredAt: Date | null;
+  orderItems: OrderItem[];
+  user: {
+    name: string;
+    email: string;
+  };
+  createdAt: Date;
+  updatedAt: Date;
+};
