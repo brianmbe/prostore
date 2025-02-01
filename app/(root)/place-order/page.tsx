@@ -1,14 +1,7 @@
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
-
-import CheckoutSteps from "@/components/share/checkout-steps";
-import { getMyCart } from "@/lib/actions/cart.actions";
-import { auth } from "@/auth";
-import { getUserById } from "@/lib/actions/user.actions";
-import { ShippingAddressType } from "@/types";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -18,7 +11,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Image from "next/image";
+
+import { auth } from "@/auth";
+import { getMyCart } from "@/lib/actions/cart.actions";
+import { getUserById } from "@/lib/actions/user.actions";
+import { ShippingAddressType } from "@/types";
+import { Button } from "@/components/ui/button";
 import { formatCurrency } from "@/lib/utils";
+import PlaceOrderForm from "./place-order-form";
+import CheckoutSteps from "@/components/share/checkout-steps";
 
 export const metadata: Metadata = {
   title: "Place Order",
@@ -45,12 +46,14 @@ export default async function PlaceOrderPage() {
     <>
       <CheckoutSteps current={3} />
 
-      <h1 className="py-4 text-2xl capitalize">Place order</h1>
+      <h1 className="py-4 font-bold text-2xl capitalize">
+        Complete your order
+      </h1>
       <div className="md:gap-5 grid md:grid-cols-3">
         <div className="space-y-4 md:col-span-2 overflow-x-auto">
           <Card>
             <CardContent className="gap-5 p-4">
-              <h2 className="pb-4 text-xl capitalize">items</h2>
+              <h2 className="pb-4 font-bold text-xl capitalize">items</h2>
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -90,7 +93,9 @@ export default async function PlaceOrderPage() {
           </Card>
           <Card>
             <CardContent className="gap-5 p-4">
-              <h2 className="pb-4 text-xl capitalize">Shipping address</h2>
+              <h2 className="pb-4 font-bold text-xl capitalize">
+                Shipping address
+              </h2>
               <p>{userAddress.fullName}</p>
               <p>
                 {userAddress.streetAddress}, {userAddress.city}{" "}
@@ -100,19 +105,21 @@ export default async function PlaceOrderPage() {
               </p>
               <div className="mt-3">
                 <Link href={"shipping-address"}>
-                  <Button variant={"outline"}>Edit your address</Button>
+                  <Button>Edit your address</Button>
                 </Link>
               </div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="gap-5 p-4">
-              <h2 className="pb-4 text-xl capitalize">Payment method</h2>
+              <h2 className="pb-4 font-bold text-xl capitalize">
+                Payment method
+              </h2>
               <p>{user.paymentMethod}</p>
 
               <div className="mt-3">
                 <Link href={"payment-method"}>
-                  <Button variant={"outline"}>Edit payment method</Button>
+                  <Button>Edit payment method</Button>
                 </Link>
               </div>
             </CardContent>
@@ -123,22 +130,33 @@ export default async function PlaceOrderPage() {
         <div className="">
           <Card>
             <CardContent className="gap-4 p-4">
+              <h2 className="pb-4 font-bold text-xl capitalize">
+                Order summary
+              </h2>
               <div className="flex justify-between">
-                <div>Items</div>
-                <div>{formatCurrency(cart.itemsPrice)}</div>
+                <div>Price</div>
+                <div className="font-bold">
+                  {formatCurrency(cart.itemsPrice)}
+                </div>
               </div>
               <div className="flex justify-between">
-                <div>Tax</div>
-                <div>{formatCurrency(cart.taxPrice)}</div>
+                <div>Tax fees</div>
+                <div className="text-sm">{formatCurrency(cart.taxPrice)}</div>
               </div>
               <div className="flex justify-between">
-                <div>Shipping</div>
-                <div>{formatCurrency(cart.shippingPrice)}</div>
+                <div>Shipping fee</div>
+                <div className="text-sm">
+                  {formatCurrency(cart.shippingPrice)}
+                </div>
               </div>
               <div className="flex justify-between">
-                <div>Total</div>
-                <div>{formatCurrency(cart.totalPrice)}</div>
+                <div className="capitalize">Total Price</div>
+                <div className="font-bold text-xl">
+                  {formatCurrency(cart.totalPrice)}
+                </div>
               </div>
+
+              <PlaceOrderForm />
             </CardContent>
           </Card>
         </div>

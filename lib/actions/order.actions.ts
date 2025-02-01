@@ -14,10 +14,10 @@ import { CartItem } from "@/types";
 export async function createorder() {
   try {
     const session = await auth();
+    if (!session) throw new Error("User is not authenticated");
+
     const cart = await getMyCart();
     const userId = session?.user?.id;
-
-    if (!session) throw new Error("User is not authenticated");
     if (!userId) throw new Error("User not found");
 
     const user = await getUserById(userId);
@@ -25,7 +25,7 @@ export async function createorder() {
     if (!cart || cart.items.length === 0) {
       return {
         success: false,
-        message: "Your cat is empty",
+        message: "Your cart is empty",
         redirectTo: "/cart",
       };
     }
@@ -92,7 +92,7 @@ export async function createorder() {
     return {
       success: true,
       message: "order created successfully",
-      redirectTo: `order/${insertedOrderId}`,
+      redirectTo: `/order-${insertedOrderId}`,
     };
   } catch (error) {
     if (isRedirectError(error)) throw error;
