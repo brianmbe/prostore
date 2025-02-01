@@ -72,7 +72,7 @@ export default function PaymentmethodForm({
                 control={form.control}
                 name="type"
                 render={({ field }) => (
-                  <FormItem className="space-y-3">
+                  <FormItem className="space-y-3 text-center">
                     <FormControl>
                       <RadioGroup
                         onValueChange={field.onChange}
@@ -103,7 +103,7 @@ export default function PaymentmethodForm({
             </div>
             <Button
               type="submit"
-              className="flex gap-2 capitalize"
+              className="flex gap-2 w-full capitalize"
               disabled={isPending}
             >
               {isPending ? (

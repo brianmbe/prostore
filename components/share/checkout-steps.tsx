@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 export default function CheckoutSteps({ current = 0 }) {
   return (
     <div className="md:flex-row flex-col flex-between space-x-2 space-y-2 mb-10">
-      {["User Login", "Shipping Address", "Payment Mehtod", "Place Order"].map(
+      {["Cart", "Shipping Address", "Payment Mehtod", "Place Order"].map(
         (step, index) => (
           <React.Fragment key={step}>
             <div

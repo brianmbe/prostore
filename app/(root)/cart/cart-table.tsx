@@ -144,41 +144,42 @@ export default function CartTable({ cart }: { cart?: Cart }) {
                 </TableBody>
               </Table>
             </div>
-
-            <Card>
-              <CardContent className="gap-4 p-4">
-                <p className="mb-3 capitalize">Cart Summary</p>
-                <div className="text-right pb-3 text-xl">
-                  Price:{" "}
-                  <span className="font-bold">
-                    {formatCurrency(cart.itemsPrice)}
-                  </span>
-                </div>
-                <div className="text-right pb-3 text-xs">
-                  Shipping fee:{" "}
-                  <span>{formatCurrency(cart.shippingPrice)}</span>
-                </div>
-                <div className="text-right pb-3 text-xs">
-                  Tax fee: <span>{formatCurrency(cart.taxPrice)}</span>
-                </div>
-                <Button
-                  className="w-full font-bold capitalize"
-                  disabled={isPending}
-                  onClick={() =>
-                    startTransition(() => {
-                      router.push("/shipping-address");
-                    })
-                  }
-                >
-                  {isPending ? (
-                    <Loader className="w-4 h-4 animate-spin" />
-                  ) : (
-                    <ArrowBigRight className="w-4 h-4" />
-                  )}{" "}
-                  checkout ({formatCurrency(cart.totalPrice)})
-                </Button>
-              </CardContent>
-            </Card>
+            <div>
+              <Card>
+                <CardContent className="gap-4 p-4">
+                  <p className="mb-3 capitalize">Cart Summary</p>
+                  <div className="text-right pb-3 text-xl">
+                    Price:{" "}
+                    <span className="font-bold">
+                      {formatCurrency(cart.itemsPrice)}
+                    </span>
+                  </div>
+                  <div className="text-right pb-3 text-xs">
+                    Shipping fee:{" "}
+                    <span>{formatCurrency(cart.shippingPrice)}</span>
+                  </div>
+                  <div className="text-right pb-3 text-xs">
+                    Tax fee: <span>{formatCurrency(cart.taxPrice)}</span>
+                  </div>
+                  <Button
+                    className="w-full font-bold capitalize"
+                    disabled={isPending}
+                    onClick={() =>
+                      startTransition(() => {
+                        router.push("/shipping-address");
+                      })
+                    }
+                  >
+                    {isPending ? (
+                      <Loader className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <ArrowBigRight className="w-4 h-4" />
+                    )}{" "}
+                    checkout ({formatCurrency(cart.totalPrice)})
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </>
       )}
